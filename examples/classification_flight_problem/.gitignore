@@ -1,0 +1,6 @@
+
+# Local data files
+!data/flight_history.csv
+!data/flight_test.csv
+!data/flight_test_predictions_gb.csv
+!data/flight_test_predictions_lg.csv

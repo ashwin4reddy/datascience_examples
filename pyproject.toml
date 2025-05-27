@@ -1,0 +1,94 @@
+[project]
+name = "datascience_examples"
+authors = [
+    { name = "Ashwin Devudigari", email = "ashwin4reddy@gmail.com"}
+]
+version = "0.0.1"
+description = "DataScience Examples"
+requires-python = "==3.11.*"
+dependencies = [
+    "pip>=23.0",
+    "pre-commit>=3.0",
+    "ruff>=0.9",
+    "pytest>=8.3",
+    "pytest-cov==6.0",
+    "mypy>=1.5",
+    "python-dotenv>=1.0",
+    "pytest-dotenv>=0.5.2",
+    "ipykernel>=6.0",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "scipy>=1.11",
+    "matplotlib>=3.7",
+    "seaborn>=0.12",
+    "statsmodels>=0.14",
+    "xgboost>=1.7",
+    "lightgbm>=3.3",
+    "catboost>=1.2",
+    "pydantic>=2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["test/"]
+pythonpath = "."
+
+[tool.ruff]
+line-length = 150
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "E501", # Line length
+    "W293", # White space on empty line
+    "FA100", #_future_ import
+    "T201", # Print
+    "S608", # Hardcoded SQL Expressions
+    "D203", # Conflicting rule (Incorrect bland lines)
+    "D213", # Conflicting rule (multi-line summary)
+    "D100", # Missing docstring in external package modules
+    "COM812", # Missing trailing comma
+    "UP007", # Unnecessary parentheses
+    "S101", # Assert statement
+    "DTZ005", "DTZ007", # Missing timezone
+    "N999", # Invalid module names allowed for Databricks Workflow job •py files
+    "FBT001", "FBT002", "FBT003", # boolean positional args in functions
+    "PD901", # generic names
+    "PD002", # pandas inplace
+    "EM101", "EM102", "TRY003", # raw-string-in-exception and length of message
+    "PGH003", # blanket-type-ignore
+    "E712", # comparison to True
+    "PLR2004", # Magic numbers in comparisons
+    "N806", # Variable in function should be lowercase
+    "N802", # Function name should be lowercase
+    "PLW2901", # Redefined l00p variable
+    "PD011", # Use 'to_numpy()' instead of ' values' (too strict for many workflows)
+    "PD015", # iterrows() is used (sometimes necessary)
+    "C901", # Function too complex (data science code often needs complex functions)
+    "ARG002", # Unused method argument
+    "BLE001", # Do not catch blind exception
+    "RUF100", # Unused noga directive (helps during development)
+    "ERA001", # Found commented-out code
+    "C408", # Unnecessary 'dict' call (dict literal is faster)
+    "FIX002", # Line contains TODO
+    "F541", # f-string is missing placeholders
+    "S301", # pickle usage
+    "S110", # try-except-pass considered harmful
+    "PLR0911", # Too many return statements
+    "PLR0912", # Too many branches
+    "PLR0915", # Too many statements
+]
+
+[tool.ruff.lint.per-file-ignores]
+"test/*" = ["S101", "ANN", "D", "PLR", "BLE001", "ARG002" ]
+"**/__init__.py" = ["D104", "F401"]
+"notebooks/*" = ["ALL"]
+"**/conftest.py" = ["F401", "F403"]
+
+
+[tool.ruff.lint.pylint]
+max-args = 15
+allow-magic-value-types = ["int", "float", "str"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15
